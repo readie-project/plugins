@@ -1,0 +1,25 @@
+{
+  "name": "readie",
+  "version": "0.1.0",
+  "description": "Run Python on Readie from Claude Code, and write, port and debug code that uses the readie @remote SDK.",
+  "author": {
+    "name": "Readie",
+    "url": "https://readie.org"
+  },
+  "homepage": "https://readie.org/docs/guides/claude-code",
+  "repository": "https://github.com/readie-project/plugins",
+  "license": "Apache-2.0",
+  "keywords": [
+    "readie",
+    "serverless",
+    "python",
+    "remote",
+    "sandbox",
+    "gvisor"
+  ],
+  "network": {
+    "hosts": [
+      "run.readie.org"
+    ]
+  }
+}

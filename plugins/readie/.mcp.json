@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "readie": {
+      "type": "http",
+      "url": "https://run.readie.org/mcp"
+    }
+  }
+}

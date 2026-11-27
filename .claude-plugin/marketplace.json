@@ -1,0 +1,18 @@
+{
+  "name": "readie",
+  "owner": {
+    "name": "Readie",
+    "url": "https://readie.org"
+  },
+  "metadata": {
+    "description": "Plugins that connect AI coding agents to Readie, the serverless platform for Python."
+  },
+  "plugins": [
+    {
+      "name": "readie",
+      "source": "./plugins/readie",
+      "description": "Run Python on Readie from Claude Code, and write, port and debug code that uses the readie @remote SDK.",
+      "category": "development"
+    }
+  ]
+}
