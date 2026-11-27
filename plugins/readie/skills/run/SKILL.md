@@ -1,19 +1,22 @@
 ---
 name: run
-description: Run a Python file or snippet on Readie with the run_python tool and report what it prints.
+description: Run a Python file or snippet on Readie with the run_python tool and report what it prints. Use when the user asks to run a script or a piece of Python code on Readie.
 argument-hint: "<file.py | python code> [--memory 2Gi] [--gpu] [--packages a==1,b==2]"
 disable-model-invocation: true
 ---
 
 # Run on Readie
 
-Run `$ARGUMENTS` on Readie with the `run_python` tool from the readie MCP server.
+Run the file or code that the user names on Readie, with the `run_python` tool from the
+readie MCP server. When this skill runs as the `/readie:run` command, the user's
+argument is: `$ARGUMENTS`.
 
 1. Work out the code:
-   - If the argument is a path to an existing `.py` file, read it.
-   - Otherwise treat the argument as Python source.
-   - With no argument, ask which file or code to run.
-2. Check it before sending, because the code leaves this machine:
+   - If the user names a `.py` file that you can read, read it. In a coding agent this is
+     a file in the project. In Claude chat it is a file that the user attached.
+   - Otherwise treat the code in the message as Python source.
+   - If there is no code, ask which file or code to run.
+2. Check it before sending, because the code leaves the user's machine:
    - If it contains secrets, tokens, passwords or private data, stop and tell the user.
    - If it imports a local module or reads a local file, it will fail remotely. Say so,
      and offer to inline the module or embed the data.

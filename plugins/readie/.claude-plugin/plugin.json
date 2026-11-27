@@ -1,13 +1,14 @@
 {
   "name": "readie",
-  "version": "0.1.0",
-  "description": "Run Python on Readie from Claude Code, and write, port and debug code that uses the readie @remote SDK.",
+  "version": "0.1.1",
+  "description": "Run Python on Readie from Claude, and write, port and debug code that uses the readie @remote SDK.",
   "author": {
     "name": "Readie",
     "url": "https://readie.org"
   },
   "homepage": "https://readie.org/docs/guides/claude-code",
   "repository": "https://github.com/readie-project/plugins",
+  "privacyPolicyUrl": "https://readie.org/privacy",
   "license": "Apache-2.0",
   "keywords": [
     "readie",

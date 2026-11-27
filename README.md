@@ -3,16 +3,20 @@
 This repository holds the plugins that connect AI coding agents to
 [Readie](https://readie.org), a serverless platform that runs Python functions in
 gVisor sandboxes restored from pre-built checkpoints. It is a plugin marketplace for
-Claude Code. It holds one plugin, [`readie`](plugins/readie/), which lets Claude Code
-run Python on Readie, add the `@remote` decorator from the `readie` SDK to functions in a
+Claude. It holds one plugin, [`readie`](plugins/readie/), which lets Claude run Python
+on Readie, add the `@remote` decorator from the `readie` SDK to functions in a
 project, and explain Readie errors.
 
 ## Install
+
+In Claude Code:
 
 ```text
 /plugin marketplace add readie-project/plugins
 /plugin install readie@readie
 ```
+
+In Claude chat, add `https://run.readie.org/mcp` as a custom connector with no sign-in.
 
 [`plugins/readie/README.md`](plugins/readie/README.md) lists what the plugin adds
 and what it sends over the network. The user guide is at
@@ -25,7 +29,7 @@ https://readie.org/docs/guides/claude-code.
 | `.claude-plugin/marketplace.json` | The Claude Code marketplace. Lists every plugin under `plugins/` |
 | `plugins/<name>/` | One plugin per folder, exactly as users install it and as it is submitted to a plugin directory |
 | `plugins/readie/.claude-plugin/plugin.json` | Manifest: name, version, declared network hosts. `icon.png` sits beside it |
-| `plugins/readie/.mcp.json` | Points Claude Code at the hosted MCP server, `https://run.readie.org/mcp` |
+| `plugins/readie/.mcp.json` | Points Claude at the hosted MCP server, `https://run.readie.org/mcp` |
 | `plugins/readie/skills/` | `readie` (loads automatically, with `reference/sdk.md` and `reference/errors.md`), `run` and `offload` |
 | `scripts/check_marketplace.py` | Fails when a plugin folder and the marketplace disagree |
 | `Makefile`, `.github/workflows/ci.yml` | `make validate`, which CI runs on every push and pull request |
@@ -64,6 +68,11 @@ each edit:
 claude --plugin-dir plugins/readie
 ```
 
+To test in Claude chat, add `https://run.readie.org/mcp` as a custom connector with no
+sign-in, and upload a skill folder as a ZIP file under **Customize**, then **Skills**.
+Commands load in chat as skills that Claude applies when a request fits, so test them by
+asking for the task in plain words.
+
 To try the MCP route of a local Readie stack, add it to the session as a second server.
 The plugin's own server still points at `https://run.readie.org/mcp`:
 
@@ -100,10 +109,13 @@ subfolder of one, so the install command does not have to change.
    update whose version has not changed.
 2. Run `make validate`.
 3. Merge to `main`. Users get the update with `/plugin marketplace update readie`.
-4. For Anthropic's plugin directory, submit or update at claude.ai/directory/manage. Point
-   it at the plugin's folder, for example `plugins/readie`, and run its **Validate** step
-   first. The listing icon comes from `.claude-plugin/icon.png`, and it is taken only on
-   the first submission.
+4. For Anthropic's directory, submit or update at claude.ai/directory/manage. A listing
+   there reaches Claude chat, Cowork and Claude Code. Submit two entries:
+   - The MCP server, as an MCP connector, with the URL `https://run.readie.org/mcp`. The
+     portal asks for every tool to be run once in MCP Inspector or as a custom connector.
+   - The plugin, with its folder, for example `plugins/readie`. Run the portal's
+     **Validate** step first. The listing icon comes from `.claude-plugin/icon.png`, and
+     it is taken only on the first submission.
 
 ## License
 

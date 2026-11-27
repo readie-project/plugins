@@ -7,8 +7,14 @@ disable-model-invocation: true
 
 # Offload a function to Readie
 
-Make the function `$ARGUMENTS` run on Readie with `@remote`. Read the `readie` skill's
-`reference/sdk.md` first.
+Make the function that the user names run on Readie with `@remote`. When this skill runs
+as the `/readie:offload` command, the user's argument is: `$ARGUMENTS`. Read the `readie`
+skill's `reference/sdk.md` first.
+
+This workflow needs a coding agent that can read and edit the project and run commands,
+such as Claude Code. Without that access, for example in Claude chat, skip step 1, apply
+steps 2 and 3 to the code that the user pasted or attached, and return the edited code
+with a list of the changes. Step 4 then applies only to the `run_python` check.
 
 ## 1. Check the local setup
 

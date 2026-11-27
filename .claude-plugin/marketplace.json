@@ -11,7 +11,7 @@
     {
       "name": "readie",
       "source": "./plugins/readie",
-      "description": "Run Python on Readie from Claude Code, and write, port and debug code that uses the readie @remote SDK.",
+      "description": "Run Python on Readie from Claude, and write, port and debug code that uses the readie @remote SDK.",
       "category": "development"
     }
   ]

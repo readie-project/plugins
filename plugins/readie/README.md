@@ -1,6 +1,6 @@
-# Readie plugin for Claude Code
+# Readie plugin for Claude
 
-This plugin connects Claude Code to [Readie](https://readie.org), a serverless platform
+This plugin connects Claude to [Readie](https://readie.org), a serverless platform
 that runs Python functions in gVisor sandboxes restored from pre-built checkpoints.
 With the plugin installed, Claude can run Python on Readie and see what it prints. It
 can also add the `@remote` decorator from the `readie` SDK to functions in your code,
@@ -8,10 +8,17 @@ and explain Readie errors.
 
 ## Install
 
+In Claude Code:
+
 ```text
 /plugin marketplace add readie-project/plugins
 /plugin install readie@readie
 ```
+
+In Claude chat (claude.ai, the desktop app and the mobile apps), add the MCP server as a
+custom connector. Open **Customize**, then **Connectors**, select **Add**, then **Add
+custom connector**. Enter the URL `https://run.readie.org/mcp`, and select **No sign-in**
+for authentication.
 
 ## What it adds
 
@@ -23,9 +30,14 @@ and explain Readie errors.
 | Command | `/readie:run <file or code>` | Runs a file or snippet on Readie. |
 | Command | `/readie:offload <function>` | Converts a function in your code to run on Readie with `@remote`. |
 
+When the plugin is installed in Claude chat, the commands are not slash commands. Claude
+applies them as skills when a request fits. The skills need code execution to be turned
+on in Claude's settings. Claude chat limits how long one tool call can run, so run long
+executions from Claude Code or the Python client.
+
 ## Data and network use
 
-- The plugin connects Claude Code to the hosted Readie MCP server at
+- The plugin connects Claude to the hosted Readie MCP server at
   `https://run.readie.org/mcp`. The plugin contains no server code and installs nothing.
 - `run_python` sends the code you ask it to run, together with its options, to that server
   over HTTPS. The code runs on the Readie service, and the server returns its printed
@@ -43,5 +55,6 @@ and explain Readie errors.
 - Plugin guide: https://readie.org/docs/guides/claude-code
 - Plugin source and issues: https://github.com/readie-project/plugins
 - Readie source: https://github.com/readie-project/readie
+- Privacy policy: https://readie.org/privacy
 
 Licensed under Apache-2.0.
